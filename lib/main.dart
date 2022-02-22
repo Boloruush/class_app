@@ -9,48 +9,102 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    Color color = Theme.of(context).primaryColor;
+
+    return MaterialApp(
+      title: 'Flutter layout demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter layout demo'),
+        ),
+        body: Column(
+          children: [
+            TitleRow(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ButtonColumn(label: 'CALL', icon: Icons.call),
+                ButtonColumn(label: 'ROUTE', icon: Icons.near_me),
+                ButtonColumn(label: 'SHARE', icon: Icons.share),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ButtonColumn extends StatelessWidget {
+  const ButtonColumn({
+    Key? key,
+    required this.label,
+    required this.icon,
+  }) : super(key: key);
+
+  final String label;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          width: 300,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Username',
-                ),
-              ),
-              const SizedBox(height: 20),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Login',
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Login'),
-              ),
-            ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.call),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: Colors.blue,
+            ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class TitleRow extends StatelessWidget {
+  const TitleRow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: const Text(
+                    'Oeschinen Lake Campground',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Kandersteg, Switzerland',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.star,
+            color: Colors.yellow[500],
+          ),
+          const Text('100'),
+        ],
       ),
     );
   }
