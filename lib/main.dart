@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          width: 400,
+          width: 300,
           child: Column(
             children: [
               const SizedBox(
