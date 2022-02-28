@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            TitleRow(),
+            Image(),
+            const TitleRow(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
                 ButtonColumn(label: 'SHARE', icon: Icons.share),
               ],
             ),
+            textSection(),
           ],
         ),
       ),
@@ -55,7 +57,7 @@ class ButtonColumn extends StatelessWidget {
           margin: const EdgeInsets.only(top: 8),
           child: Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w400,
               color: Colors.blue,
@@ -106,6 +108,40 @@ class TitleRow extends StatelessWidget {
           const Text('100'),
         ],
       ),
+    );
+  }
+}
+
+class textSection extends StatelessWidget {
+  const textSection({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(32),
+      child: const Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
+        softWrap: true,
+      ),
+    );
+  }
+}
+class Image extends StatelessWidget{
+  @override 
+  Widget build(BuildContext context){
+    return Scaffold(
+    body: Center(
+    child: Image.network(
+    'https://www.wikidata.org/wiki/Q14533#/media/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg',
+      width:100,
+    ),
+    ),
     );
   }
 }
