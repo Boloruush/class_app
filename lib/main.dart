@@ -19,20 +19,36 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            // Image(),
-            const TitleRow(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonColumn(label: 'CALL', icon: Icons.call),
-                ButtonColumn(label: 'ROUTE', icon: Icons.near_me),
-                ButtonColumn(label: 'SHARE', icon: Icons.share),
-              ],
+            Image.asset(
+              'images/lake.jpg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
             ),
-            textSection(),
+            const TitleRow(),
+            const ButtonRow(),
+            const textSection(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class ButtonRow extends StatelessWidget {
+  const ButtonRow({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ButtonColumn(label: 'CALL', icon: Icons.call),
+        ButtonColumn(label: 'ROUTE', icon: Icons.near_me),
+        ButtonColumn(label: 'SHARE', icon: Icons.share),
+      ],
     );
   }
 }
@@ -132,16 +148,3 @@ class textSection extends StatelessWidget {
     );
   }
 }
-// class Image extends StatelessWidget{
-  // @override 
-  // Widget build(BuildContext context){
-    // return Scaffold(
-    // body: Center(
-    // child: Image.network(
-    // 'https://www.wikidata.org/wiki/Q14533#/media/File:20190725_Oeschinensee-Panorama,_Kandersteg_(06540-42_stitch).jpg',
-      // width:100,
-    // ),
-    // ),
-    // );
-  // }
-// }
